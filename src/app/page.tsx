@@ -3,13 +3,10 @@
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { Product } from "@/types/types";
-import Header from "@/components/Header";
-
 import SearchBar from "@/components/SearchBar";
 import SidebarFilter from "@/components/SidebarFilter";
-import Cart from "@/components/Cart";
 
-const HomePage = () => {
+const MainPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -17,9 +14,6 @@ const HomePage = () => {
   const [filters, setFilters] = useState<Record<string, string[]>>({});
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<"products" | "cart">(
-    "products"
-  );
 
   const fetchProducts = async () => {
     try {
@@ -78,7 +72,7 @@ const HomePage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-40 w-screen h-screen">
-        <div className="w-12 h-12 border-4 border-blue-500 border-solid border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-gray-500 border-solid border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -94,18 +88,8 @@ const HomePage = () => {
     setFilteredProducts(searchResults);
   };
 
-  const handleTabChange = (tab: "products" | "cart") => {
-    setSelectedTab(tab);
-  };
-  const isCartOpen = selectedTab === "cart";
-
   return (
     <div className="container mx-auto">
-      {/* Fixed Header */}
-      <div className="col-span-full fixed w-full z-10 bg-white">
-        <Header onTabChange={handleTabChange} isCartOpen={isCartOpen} />
-      </div>
-
       <div className="min-h-screen flex">
         {isSidebarOpen && (
           <div
@@ -113,49 +97,39 @@ const HomePage = () => {
             onClick={() => setSidebarOpen(false)}
           ></div>
         )}
-        {!isCartOpen && (
-          <div
-            className={`fixed sm:top-16 h-screen bg-white w-64 p-4 z-20 transition-transform ${
-              isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-            } lg:translate-x-0 lg:block`}
-          >
-            <SidebarFilter onFilter={setFilters} />
-          </div>
-        )}
 
         <div
-          className={`lg:col-span-1 p-4 pb-2 mt-16 ${
-            isCartOpen ? " " : "lg:ml-[250px] lg:w-[calc(100%-250px)]"
-          } w-full`}
+          className={`fixed sm:top-16 h-screen bg-gray-100 w-64 p-4 z-20 transition-transform ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:translate-x-0 lg:block`}
         >
-          {!isCartOpen && (
-            <SearchBar
-              onSearch={handleSearch}
-              isSidebarOpen={isSidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-            />
-          )}
-          {!isCartOpen ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))
-              ) : (
-                <p className="text-center col-span-full text-gray-600 mt-10">
-                  No products match your search.
-                </p>
-              )}
-            </div>
-          ) : (
-            <div className="justify-center w-full p flex">
-              <Cart />
-            </div>
-          )}
+          <SidebarFilter onFilter={setFilters} />
+        </div>
+
+        <div
+          className={`lg:col-span-1 p-4 pb-2 mt-16 lg:ml-[250px] lg:w-[calc(100%-250px)] w-full`}
+        >
+          <SearchBar
+            onSearch={handleSearch}
+            isSidebarOpen={isSidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            ) : (
+              <p className="text-center col-span-full text-gray-600 mt-10">
+                No products match your search.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default MainPage;

@@ -1,5 +1,6 @@
 import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/types";
+import Image from "next/image";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const {
@@ -29,12 +30,16 @@ const ProductCard = ({ product }: { product: Product }) => {
   };
 
   return (
-    <div className="border p-4">
-      <img
+    <div className="flex flex-col border p-4 justify-between ">
+      <Image
         src={product.imageURL}
         alt={product.name}
-        className="w-full h-40 object-cover"
+        width={100}
+        height={100}
+        layout="responsive"
+        loading="lazy"
       />
+
       <div className="flex flex-column justify-between mt-2">
         <div>
           <h3 className="font-bold">{product.name}</h3>

@@ -1,6 +1,9 @@
-import { useCart } from "@/context/CartContext";
+"use client";
 
-const Cart = () => {
+import { useCart } from "@/context/CartContext";
+import Image from "next/image";
+
+const CartComponent = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();
 
   const handleQuantityChange = (itemId: string, currentQuantity: number) => {
@@ -9,21 +12,26 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg p-4 max-w-7xl flex-1 shadow-lg">
-      <h2 className="text-xl font-bold mb-4">Shopping Cart</h2>
+    <div className="container mx-auto p-4 md:p-8 min-h-screen bg-gray-50 max-w-screen-xl">
+      <h1 className="text-2xl font-bold text-left text-gray-800 mb-8 mt-16">
+        Your Shopping Cart
+      </h1>
 
       {cart.length > 0 ? (
         <>
           {cart.map((item) => (
             <div key={item.id} className="flex items-center gap-4 mb-4">
-              <img
+              <Image
                 src={item.imageURL}
                 alt={item.name}
-                className="w-16 h-16 object-cover"
+                width={55}
+                height={55}
+                // layout="responsive"
+                loading="lazy"
               />
               <div className="flex-1">
                 <h3 className="font-bold">{item.name}</h3>
-                <p>${item.price}</p>
+                <p>Rs. {item.price}</p>
               </div>
 
               <div className="flex items-center gap-2">
@@ -69,4 +77,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartComponent;

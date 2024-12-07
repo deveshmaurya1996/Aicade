@@ -20,7 +20,7 @@ const SidebarFilter = ({ onFilter }: FilterProps) => {
   };
 
   return (
-    <aside className="p-4">
+    <aside className="p-4 ">
       <div className="mb-4">
         <h4 className="font-semibold">Color</h4>
         {colors.map((color) => (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { debounce } from "lodash";
+import Image from "next/image";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -14,18 +14,18 @@ const SearchBar = ({
 }: SearchBarProps) => {
   const [query, setQuery] = useState<string>("");
 
-  const debouncedSearch = debounce((value: string) => {
-    onSearch(value);
-  }, 500);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setQuery(newQuery);
-    debouncedSearch(newQuery);
+    setQuery(e.target.value);
   };
 
   const handleSearchButtonClick = () => {
     onSearch(query);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onSearch(query);
+    }
   };
 
   return (
@@ -36,18 +36,34 @@ const SearchBar = ({
         placeholder="Search for products..."
         value={query}
         onChange={handleChange}
+        onKeyDown={handleKeyPress}
       />
+
       <button
         onClick={handleSearchButtonClick}
-        className="bg-black text-white p-2 pl-6 pr-6 rounded-md hover:bg-gray-600 h-full items-center"
+        className="bg-black p-2 px-4 rounded-md h-full flex items-center justify-center"
       >
-        <img src="/search.png" alt="Cart" width={25} height={25} />
+        <Image
+          src="/search.png"
+          alt="Search"
+          width={30}
+          height={30}
+          loading="lazy"
+          objectFit="contain"
+        />
       </button>
+
       <button
-        className="lg:hidden bg-black p-2 pl-6 pr-6 rounded-md h-full"
+        className="lg:hidden bg-black p-2 px-4 rounded-md h-full flex items-center justify-center"
         onClick={() => setSidebarOpen(!isSidebarOpen)}
       >
-        <img src="/filter.png" alt="Cart" width={30} height={30} />
+        <Image
+          src="/filter.png"
+          alt="Filter"
+          width={30}
+          height={30}
+          loading="lazy"
+        />
       </button>
     </div>
   );
