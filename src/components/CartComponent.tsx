@@ -30,8 +30,8 @@ const CartComponent = () => {
                 loading="lazy"
               />
               <div className="flex-1">
-                <h3 className="font-bold">{item.name}</h3>
-                <p>Rs. {item.price}</p>
+                <h3 className="font-bold text-black">{item.name}</h3>
+                <p className="text-black">Rs. {item.price}</p>
               </div>
 
               <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ const CartComponent = () => {
                   onChange={(e) =>
                     handleQuantityChange(item.id, parseInt(e.target.value))
                   }
-                  className="p-1 border border-gray-300 rounded-md"
+                  className="p-1 border border-gray-300 rounded-md text-black"
                 >
                   {Array.from(
                     { length: item.quantity },
@@ -62,7 +62,7 @@ const CartComponent = () => {
             </div>
           ))}
 
-          <p className="text-lg font-bold border-t border-gray-300 mt-4 p-4 pr-0 text-right">
+          <p className="text-lg font-bold border-t border-gray-300 mt-4 p-4 pr-0 text-right text-black">
             Total: Rs.{" "}
             {cart.reduce(
               (total, item) => total + item.price * item.currentQuantity,

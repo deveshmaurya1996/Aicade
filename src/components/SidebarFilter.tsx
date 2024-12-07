@@ -22,9 +22,9 @@ const SidebarFilter = ({ onFilter }: FilterProps) => {
   return (
     <aside className="p-4 ">
       <div className="mb-4">
-        <h4 className="font-semibold">Color</h4>
+        <h4 className="font-semibold text-black">Color</h4>
         {colors.map((color) => (
-          <label key={color} className="block">
+          <label key={color} className="block text-black">
             <input
               type="checkbox"
               name="color"
@@ -38,9 +38,9 @@ const SidebarFilter = ({ onFilter }: FilterProps) => {
       </div>
 
       <div className="mb-4">
-        <h4 className="font-semibold">Gender</h4>
+        <h4 className="font-semibold text-black">Gender</h4>
         {genders.map((gender) => (
-          <label key={gender} className="block">
+          <label key={gender} className="block text-black">
             <input
               type="checkbox"
               name="gender"
@@ -54,9 +54,9 @@ const SidebarFilter = ({ onFilter }: FilterProps) => {
       </div>
 
       <div className="mb-4">
-        <h4 className="font-semibold">Price</h4>
+        <h4 className="font-semibold text-black">Price</h4>
         {priceRange.map((price) => (
-          <label key={price} className="block">
+          <label key={price} className="block text-black">
             <input
               type="checkbox"
               name="price"
@@ -70,9 +70,9 @@ const SidebarFilter = ({ onFilter }: FilterProps) => {
       </div>
 
       <div className="mb-4">
-        <h4 className="font-semibold">Type</h4>
+        <h4 className="font-semibold text-black">Type</h4>
         {types.map((type) => (
-          <label key={type} className="block">
+          <label key={type} className="block text-black">
             <input
               type="checkbox"
               name="type"
