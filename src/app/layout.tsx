@@ -18,6 +18,12 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Aicade Project",
   description: "Assignment for Full Stack Developer",
+  authors: [
+    {
+      name: "Devesh Maurya",
+      url: "https://devesh-maurya-portfolio.vercel.app/",
+    },
+  ],
 };
 
 export default function RootLayout({
