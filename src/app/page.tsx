@@ -89,7 +89,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto bg-gray-50">
       <div className="min-h-screen flex">
         {isSidebarOpen && (
           <div
