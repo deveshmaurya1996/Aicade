@@ -42,12 +42,12 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       <div className="flex flex-column justify-between mt-2">
         <div>
-          <h3 className="font-bold">{product.name}</h3>
-          <p>Rs. {product.price}</p>
+          <h3 className="font-bold text-black">{product.name}</h3>
+          <p className="text-black">Rs. {product.price}</p>
         </div>
 
         {existingItem ? (
-          <div className="bg-black flex items-center gap-2 mt-2">
+          <div className="bg-black flex items-center gap-2 mt-2 pr-2 pl-2">
             <button
               onClick={handleDecrease}
               className="text-white p-2 font-bold"

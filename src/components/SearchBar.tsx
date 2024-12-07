@@ -32,7 +32,7 @@ const SearchBar = ({
     <div className="flex items-center space-x-2 mb-4 justify-center h-10">
       <input
         type="text"
-        className="border p-2 rounded-md w-full sm:w-1/2"
+        className="border p-2 rounded-md w-full sm:w-1/2 text-black"
         placeholder="Search for products..."
         value={query}
         onChange={handleChange}

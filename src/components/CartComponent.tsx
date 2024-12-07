@@ -71,7 +71,7 @@ const CartComponent = () => {
           </p>
         </>
       ) : (
-        <p>Your cart is empty.</p>
+        <p className="text-black">Your cart is empty.</p>
       )}
     </div>
   );
