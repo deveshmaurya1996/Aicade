@@ -16,7 +16,10 @@ const Header = () => {
   const isCartPage = pathname === "/cart";
   return (
     <header className="bg-gray-200 text-white p-3 flex justify-between items-center fixed w-full lg:pl-16 lg:pr-16">
-      <h1 className="text-2xl font-bold text-black">TeeRex Store</h1>
+      <Link href="/">
+        <h1 className="text-2xl font-bold text-black">TeeRex Store</h1>
+      </Link>
+
       <div className="flex space-x-4">
         <Link href="/">
           <button

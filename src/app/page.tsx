@@ -88,6 +88,8 @@ const MainPage = () => {
     setFilteredProducts(searchResults);
   };
 
+  console.log("filteredProducts", filteredProducts);
+
   return (
     <div className="container mx-auto bg-gray-50">
       <div className="min-h-screen flex">
